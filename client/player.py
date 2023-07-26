@@ -24,12 +24,14 @@ class Player:
     def full_name(self) -> str:
         return self._info.full_name
 
-    @classmethod
-    def _get_player_by_name(cls, first_name: str, last_name: str):
+    @staticmethod
+    def _get_player_by_name(first_name: str, last_name: str):
         players_found = players.find_players_by_full_name(f'{first_name} {last_name}')
         assert players_found, f"No player found: {first_name} {last_name}"
         assert len(
             players_found) == 1, f"More players found for {first_name} {last_name}: {', '.join([p['full_name'] for p in players_found])}"
         return PlayerModel(**players_found[0])
+
+
 
 
